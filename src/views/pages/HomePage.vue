@@ -1,7 +1,7 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { useFirestore, useCollection } from 'vuefire';
-import { collection, doc, addDoc, deleteDoc } from 'firebase/firestore';
+import { collection, doc, addDoc, deleteDoc, setDoc } from 'firebase/firestore';
 
 const db = useFirestore();
 const shoes = useCollection(collection(db, 'shoes'));
@@ -9,6 +9,8 @@ const shoes = useCollection(collection(db, 'shoes'));
 const form = reactive({
 	name: "",
 });
+
+const editing = ref(false);
 
 function addShoe() {
 	addDoc( collection(db, 'shoes'), {
@@ -19,17 +21,43 @@ function addShoe() {
 
 async function removeShoe(docId) {
 	const record = doc(db, 'shoes', docId);
-	await deleteDoc(record);
+	
+	if (confirm("Are you shore?")) {
+		await deleteDoc(record);
+	}
 }
 
+function editShoes(id) {
+	editing.value = id;
+}
+
+function updateShoe(id, r) {
+   setDoc(doc(db, 'shoes', id), {
+   	name: r,
+   });
+   clearEdit();	
+}
+
+function clearEdit() {
+	editing.value = false;	
+}
 </script>
 
 <template>
 	<h1>Home Town Road </h1>
 
 	<ul>
-		<li v-for="shoes in shoes" :key="shoes.id">
-			{{shoes.name}} <button @click="removeShoe(shoes.id)" type="button">x</button>
+		<li v-for="shoe in shoes" :key="shoe.id">
+			{{shoe.name}} <button @click="removeShoe(shoe.id)" type="button">x</button>
+
+			<button @click="editShoes(shoe.id)" v-if="editing != shoe.id">Edit</button>
+
+			<template v-if="editing == shoe.id">
+				<input type="text" v-model="shoe.name"/>
+				<button @click="updateShoe(shoe.id, shoe.name)">Update</button>
+
+				<button @click="clearEdit()">Cancel</button>
+			</template>
 		</li>
 	</ul>
 
@@ -46,3 +74,26 @@ async function removeShoe(docId) {
 		grid-gap: 6px;
 	}
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
