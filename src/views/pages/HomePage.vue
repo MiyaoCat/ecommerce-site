@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from "vue";
 import { useFirestore, useCollection } from 'vuefire';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, doc, addDoc, deleteDoc } from 'firebase/firestore';
 
 const db = useFirestore();
 const shoes = useCollection(collection(db, 'shoes'));
@@ -16,14 +16,20 @@ function addShoe() {
 	});
 	form.name = ""; // clear form
 }
+
+async function removeShoe(docId) {
+	const record = doc(db, 'shoes', docId);
+	await deleteDoc(record);
+}
+
 </script>
 
 <template>
-	<h1>Home Town Road</h1>
+	<h1>Home Town Road </h1>
 
 	<ul>
 		<li v-for="shoes in shoes" :key="shoes.id">
-			{{shoes.name}}
+			{{shoes.name}} <button @click="removeShoe(shoes.id)" type="button">x</button>
 		</li>
 	</ul>
 
