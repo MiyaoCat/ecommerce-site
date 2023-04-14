@@ -12,7 +12,10 @@
   },
   "dependencies": {
     "firebase": "^9.19.1",
+    "lint": "^0.8.19",
+    "npm": "^9.6.4",
     "pinia": "^2.0.32",
+    "run": "^1.4.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6",
     "vuefire": "^3.1.0"

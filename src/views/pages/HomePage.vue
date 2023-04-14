@@ -1,10 +1,16 @@
 <script setup>
 import { reactive, ref } from "vue";
 import { useFirestore, useCollection } from 'vuefire';
-import { collection, doc, addDoc, deleteDoc, setDoc } from 'firebase/firestore';
+import { collection, query, orderBy, doc, addDoc, deleteDoc, setDoc } from 'firebase/firestore';
 
 const db = useFirestore();
-const shoes = useCollection(collection(db, 'shoes'));
+
+const shoesData = collection(db, 'shoes');
+const sorted = query(shoesData, orderBy('name'));
+
+const shoes = useCollection(sorted);
+
+// const shoes = useCollection( query( collection(db, 'shoes'), orderBy('name') ) );
 
 const form = reactive({
 	name: "",
