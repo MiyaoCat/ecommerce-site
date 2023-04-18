@@ -41,10 +41,10 @@
 		<button type="submit">Sign In</button>
 	</form>
 
-	<form form @submit.prevent="user.twitterLogin(user.auth, user.provider)" v-if="!user.current">
+<!-- 	<form form @submit.prevent="user.twitterLogin(user.auth, user.provider)" v-if="!user.current">
 		<h2>Twitter Login</h2>
 		<form action=""></form>
-	</form>
+	</form> -->
 </template>
 
 <style scoped>
