@@ -13,6 +13,10 @@ import { RouterLink, RouterView } from 'vue-router';
         <li>
           <RouterLink to="/sign-in">Sign In</RouterLink>
         </li>
+
+        <li>
+          <RouterLink to="/sign-in">Shoe List</RouterLink>
+        </li>
       </ul>
     </nav>
   </header>

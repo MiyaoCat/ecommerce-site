@@ -13,7 +13,8 @@ const shoes = useCollection(sorted);
 // const shoes = useCollection( query( collection(db, 'shoes'), orderBy('name') ) );
 
 const form = reactive({
-	name: "",
+	name: '',
+	price: '',
 });
 
 const editing = ref(false);
@@ -21,8 +22,11 @@ const editing = ref(false);
 function addShoe() {
 	addDoc( collection(db, 'shoes'), {
 		name: form.name,
+		price: form.price,
+		size: form.size,
 	});
 	form.name = ""; // clear form
+	form.price = '';
 }
 
 async function removeShoe(docId) {
@@ -50,11 +54,14 @@ function clearEdit() {
 </script>
 
 <template>
-	<h1>Home Town Road </h1>
+	<h1 class='loud-voice'>Add Shoe</h1>
 
 	<ul>
 		<li v-for="shoe in shoes" :key="shoe.id">
-			{{shoe.name}} <button @click="removeShoe(shoe.id)" type="button">x</button>
+			<p class="normal-voice">{{shoe.name}}</p>
+			<p class="normal-voice">Price: ${{shoe.price}}</p>
+			<p class="normal-voice">Size: {{shoe.size}}</p>
+			<button @click="removeShoe(shoe.id)" type="button">x</button>
 
 			<button @click="editShoes(shoe.id)" v-if="editing != shoe.id">Edit</button>
 
@@ -70,6 +77,21 @@ function clearEdit() {
 	<form @submit.prevent="addShoe()">
 		<label for="shoe-name">Shoe Name</label>
 		<input id="shoe-name" type="text" v-model="form.name" />
+
+		<label for="shoe-price">Price</label>
+		<input id="shoe-price" type="text" v-model="form.price" />
+
+		<label for="shoe-size">Size</label>
+		<select name="shoe-size" id="shoe-size">
+			<option value="7">7</option>
+			<option value="7.5">7.5</option>
+			<option value="8">8</option>
+			<option value="8.5">8.5</option>
+			<option value="9">9</option>
+			<option value="9.5">9.5</option>
+			<option value="10">10</option>
+		</select>
+
 		<button type="submit">Add</button>
 	</form>
 </template>

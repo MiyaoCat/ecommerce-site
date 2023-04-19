@@ -7,6 +7,7 @@ import router from './router'
 
 import './css/site-minified.css'
 
+
 import { firebaseApp } from './router/firebase.js';
 
 const app = createApp(App)

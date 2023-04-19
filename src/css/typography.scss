@@ -1,7 +1,6 @@
 
 html {
-	--marker: Permanent Marker, Noto Serif;
-	--sans-serif: Encode Sans, Helvetica;
+	--sans-serif: 'Satoshi', Helvetica;
 	--serif: Noto Serif Display, Old Standard TT, Times New Roman;
 
 	
@@ -10,7 +9,7 @@ a {
 	font-family: var(--sans-serif);
 	text-transform: uppercase;
 	font-weight: 200;
-	letter-spacing: .2rem;
+	letter-spacing: .5rem;
 }
 
 
@@ -27,13 +26,15 @@ a:hover {
 
 /* Main header or banner text or similar */
 .screaming-voice {
-	font-family: var(--marker);
 	font-size: clamp(40px, 7.5vw, 140px);
 }
 
 /* Header text or similar */
 .loud-voice {
+	font-family: var(--sans-serif);
 	font-size: 30px;
+	font-weight: 700;
+	font-color: var(--color);
 }
 
 /* Sub-header text or similar */
@@ -45,24 +46,29 @@ a:hover {
 /* Paragraph text or similar */
 .normal-voice {
 	font-size: 16px;
+	font-family: var(--sans-serif);
 }
 
 /* Caption text or similar */
 .calm-voice {
 	font-size: 12px;
+	font-family: var(--sans-serif);
 }
 
 /* Fine print text or similar */
 .quiet-voice {
-	font-size: 10px;
+	font-size: var(--small-font);
+	font-family: var(--sans-serif);
 }
 
 :is(.calm-voice, p) em {
 	font-style: italic;
+	font-family: var(--sans-serif);
 }
 
 :is(.calm-voice, p) strong {
 	font-weight: 700;
+	font-family: var(--sans-serif);
 }
 
 /* these would be scoped to section or to an article element */

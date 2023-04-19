@@ -7,7 +7,7 @@
 </script>
 
 <template>
-	<h1>Sign In Page</h1>
+	<h1 class="loud-voice">Sign In Page</h1>
 	<button type="button" @click="user.signOut()" v-if="user.current">Sign Out</button>
 
 	<div v-if="user.current">
@@ -41,13 +41,13 @@
 		<button type="submit">Sign In</button>
 	</form>
 
-<!-- 	<form form @submit.prevent="user.twitterLogin(user.auth, user.provider)" v-if="!user.current">
+<!-- 	<form @submit.prevent="user.twitterLogin(user.auth, user.provider)" v-if="!user.current">
 		<h2>Twitter Login</h2>
 		<form action=""></form>
 	</form> -->
 </template>
 
-<style scoped>
+<style>
 	form {
 		border: 2px solid white;
 		padding: 10px 15px;
