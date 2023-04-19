@@ -2,6 +2,7 @@
 import { reactive, ref } from "vue";
 import { useFirestore, useCollection } from 'vuefire';
 import { collection, query, orderBy, doc, addDoc, deleteDoc, setDoc } from 'firebase/firestore';
+import ShoeCard from '@/components/ShoeCard.vue';
 
 const db = useFirestore();
 
@@ -15,18 +16,23 @@ const shoes = useCollection(sorted);
 const form = reactive({
 	name: '',
 	price: '',
+	sizes: [],
 });
 
 const editing = ref(false);
+
+const shoeSizes = ref([ 9, 9.5, 10, 10.5 ]);
 
 function addShoe() {
 	addDoc( collection(db, 'shoes'), {
 		name: form.name,
 		price: form.price,
-		size: form.size,
+		sizes: form.sizes,
+		image: form.image ?? "",
 	});
 	form.name = ""; // clear form
 	form.price = '';
+	form.image = '';
 }
 
 async function removeShoe(docId) {
@@ -57,10 +63,9 @@ function clearEdit() {
 	<h1 class='loud-voice'>Add Shoe</h1>
 
 	<ul>
-		<li v-for="shoe in shoes" :key="shoe.id">
-			<p class="normal-voice">{{shoe.name}}</p>
-			<p class="normal-voice">Price: ${{shoe.price}}</p>
-			<p class="normal-voice">Size: {{shoe.size}}</p>
+		<li v-for="item in shoes" :key="shoe.id">
+			<ShoeCard :shoe="item" />
+
 			<button @click="removeShoe(shoe.id)" type="button">x</button>
 
 			<button @click="editShoes(shoe.id)" v-if="editing != shoe.id">Edit</button>
@@ -80,29 +85,31 @@ function clearEdit() {
 
 		<label for="shoe-price">Price</label>
 		<input id="shoe-price" type="text" v-model="form.price" />
-
-		<label for="shoe-size">Size</label>
-		<select name="shoe-size" id="shoe-size">
-			<option value="7">7</option>
-			<option value="7.5">7.5</option>
-			<option value="8">8</option>
-			<option value="8.5">8.5</option>
-			<option value="9">9</option>
-			<option value="9.5">9.5</option>
-			<option value="10">10</option>
-		</select>
-
-		<button type="submit">Add</button>
+		
+		<ul>
+			<li v-for="size in shoeSizes">
+				<input type="checkbox" :value="size" v-model="form.sizes">
+				<label class="normal-voice">{{size}}</label>
+			</li>
+		</ul>
+		<button @click="addShoe()">Submit</button>
+		{{form.sizes}}
 	</form>
 </template>
 
-<style>
+<style scoped>
 	form {
 		display: grid;
 		grid-gap: 6px;
 	}
+
 </style>
 
+<style>
+	p {
+		color: red;
+	}
+</style>
 
 
 

@@ -100,8 +100,8 @@ html {
   --standard: 1140px;
   --tight: 800px;
   --wide: 98vw;
-  --paper: hsl(37, 32%, 92%); /* light brown */
-  --ink: black;
+  --paper: hsla(60, 16%, 11%, 1.00); /* near black */
+  --ink: white;
   --highlight: hsl(360, 100%, 39%); /* red */
 }
 
@@ -124,19 +124,13 @@ section:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
-picture img {
-  opacity: 0;
-}
-
-picture {
-  background-color: var(--shadow);
-}
-
 /* Structure */
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* be at least a full viewport height */
+  background-color: var(--paper);
+  color: var(--ink);
 }
 
 main {
@@ -199,7 +193,15 @@ a:hover {
 /* Sub-header text or similar */
 .attention-voice {
   font-family: var(--sans-serif);
-  font-size: 26px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Bigger than paragraph */
+.alert-voice {
+  font-family: var(--sans-serif);
+  font-size: 18px;
+  font-weight: 700;
 }
 
 /* Paragraph text or similar */

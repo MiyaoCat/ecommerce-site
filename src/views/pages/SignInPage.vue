@@ -15,12 +15,12 @@
 	</div>
 
 	<form @submit.prevent="user.signUp(user.form.username, user.form.password)" v-if="!user.current">
-		<h2>Sign Up</h2>
+		<h2 class='attention-voice'>Sign Up</h2>
 		<div class="form-field">
-			<label for="email1">Email</label>
+			<label class="alert-voice" for="email1">Email</label>
 			<input id="email1" type="text" v-model="user.form.username"/>
 
-			<label for="password1">Password</label>
+			<label class="alert-voice" for="password1">Password</label>
 			<input id="password1" type="password" v-model="user.form.password"/>
 			<p class="quiet-voice">Min 6 characters</p>
 		</div>
@@ -29,12 +29,12 @@
 	</form>
 
 	<form @submit.prevent="user.signIn(user.form.username, user.form.password)" v-if="!user.current">
-		<h2>Sign In</h2>
+		<h2 class='attention-voice'>Sign In</h2>
 		<div class="form-field">
-			<label for="email2">Email</label>
+			<label class="alert-voice" for="email2">Email</label>
 			<input id="email2" type="text" v-model="user.form.username"/>
 
-			<label for="password2">Password</label>
+			<label class="alert-voice" for="password2">Password</label>
 			<input id="password2" type="password" v-model="user.form.password"/>
 		</div>
 
@@ -49,8 +49,14 @@
 
 <style>
 	form {
-		border: 2px solid white;
+		border: 2px solid black;
 		padding: 10px 15px;
 		margin: 10px 0;
+		max-width: 50%;
+	}
+
+	.form-field {
+		display: flex;
+		flex-direction: column;
 	}
 </style>

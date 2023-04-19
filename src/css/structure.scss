@@ -3,6 +3,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh; /* be at least a full viewport height */
+	background-color: var(--paper);
+	color: var(--ink)
 } 
 
 main {

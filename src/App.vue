@@ -15,7 +15,7 @@ import { RouterLink, RouterView } from 'vue-router';
         </li>
 
         <li>
-          <RouterLink to="/sign-in">Shoe List</RouterLink>
+          <RouterLink to="/product-page">Products</RouterLink>
         </li>
       </ul>
     </nav>
@@ -26,3 +26,9 @@ import { RouterLink, RouterView } from 'vue-router';
   </main>
 </template>
 
+<style>
+  nav ul {
+    display: flex;
+    gap: 10px;
+  }
+</style>
