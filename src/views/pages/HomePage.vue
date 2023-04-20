@@ -28,7 +28,7 @@ function addShoe() {
 		name: form.name,
 		price: form.price,
 		sizes: form.sizes,
-		image: form.image ?? "",
+		image: form.image,
 	});
 	form.name = ""; // clear form
 	form.price = '';
@@ -63,8 +63,8 @@ function clearEdit() {
 	<h1 class='loud-voice'>Add Shoe</h1>
 
 	<ul>
-		<li v-for="item in shoes" :key="shoe.id">
-			<ShoeCard :shoe="item" />
+		<li v-for="shoe in shoes" :key="shoe.id">
+			<ShoeCard :shoe="shoe" />
 
 			<button @click="removeShoe(shoe.id)" type="button">x</button>
 
@@ -106,9 +106,7 @@ function clearEdit() {
 </style>
 
 <style>
-	p {
-		color: red;
-	}
+
 </style>
 
 
