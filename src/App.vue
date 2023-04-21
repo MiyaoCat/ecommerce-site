@@ -15,7 +15,7 @@ import { RouterLink, RouterView } from 'vue-router';
         </li>
 
         <li>
-          <RouterLink to="/product-page">Products</RouterLink>
+          <RouterLink to="/product-page">Shoes</RouterLink>
         </li>
       </ul>
     </nav>
